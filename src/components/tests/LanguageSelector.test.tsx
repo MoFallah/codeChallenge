@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n'; // adjust path if needed
 import uiStateReducer from '../../app/store/slices/uiStateSlice';
@@ -10,8 +10,9 @@ function renderWithProviders(
   ui: React.ReactElement,
   options?: { preloadedState?: any }
 ) {
+  const rootReducer = combineReducers({ uiState: uiStateReducer });
   const store = configureStore({
-    reducer: { uiState: uiStateReducer },
+    reducer: rootReducer,
     preloadedState: options?.preloadedState,
   });
   return {

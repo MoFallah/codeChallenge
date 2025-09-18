@@ -7,7 +7,9 @@ import CustomToast from '../CustomToast/CustomToast';
 
 const ErrorToast: FC = () => {
   const dispatch = useDispatch();
-  const { error, toastId } = useSelector((state: RootState) => state.uiState || {});
+  const { error, toastId } = useSelector(
+    (state: RootState) => state.uiState ?? { error: undefined, toastId: undefined }
+  );
   useEffect(() => {
     if (error && toastId) {
       toast.error(

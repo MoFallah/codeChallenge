@@ -1,4 +1,5 @@
 import { ProductCard } from "../components/ProductCard/ProductCard";
+import type { Product } from "../types";
 
 const sampleProduct = {
   id: 1,
@@ -22,7 +23,7 @@ export default {
 
 export const Default = (args) => (
   <div style={{ width: 420, margin: '2rem auto' }}>
-    <ProductCard selectable={args.selectable} product={sampleProduct} />
+    <ProductCard selectable={args.selectable} product={sampleProduct as unknown as Product} />
   </div>
 );
 Default.args = {
@@ -31,7 +32,7 @@ Default.args = {
 
 export const NotSelectable = (args) => (
   <div style={{ width: 420, margin: '2rem auto' }}>
-    <ProductCard selectable={args.selectable} product={sampleProduct} />
+    <ProductCard selectable={args.selectable} product={sampleProduct as unknown as Product} />
   </div>
 );
 NotSelectable.args = {

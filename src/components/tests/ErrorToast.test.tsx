@@ -26,7 +26,7 @@ describe('ErrorToast', () => {
   it('Should show toast when error and toastId are present', () => {
     const store = configureStore({
       reducer: { uiState: uiStateReducer },
-      preloadedState: { uiState: { error: 'Test error', toastId: 'toast-1', theme: '', language: 'en', toastId: 'toast-1' } },
+      preloadedState: { uiState: { error: 'Test error', toastId: 'toast-1', theme: '', language: 'en' } }
     });
 
     render(
