@@ -22,7 +22,7 @@ describe('unit', () => {
 
   it('should set selectedProductType', () => {
     const action = setSelectedProductType('FIXED');
-    const state = productsReducer(initialState, action);
+    const state = productsReducer(initialState as any, action);
     expect(state.selectedProductType).toBe('FIXED');
   });
 });
@@ -30,13 +30,13 @@ describe('unit', () => {
 describe('acceptance', () => {
   it('should set loading true on fetchProducts.pending', () => {
     const action = { type: fetchProducts.pending.type };
-    const state = productsReducer(initialState, action);
+    const state = productsReducer(initialState as any, action);
     expect(state.loading).toBe(true);
   });
 
   it('should set items and loading false on fetchProducts.fulfilled', () => {
     const action = { type: fetchProducts.fulfilled.type, payload: products };
-    const state = productsReducer({ ...initialState, loading: true }, action);
+    const state = productsReducer({ ...initialState, loading: true } as any, action);
     expect(state.loading).toBe(false);
     expect(state.items).toEqual(products);
   });
@@ -45,13 +45,13 @@ describe('acceptance', () => {
 describe('exception', () => {
   it('should not change items or selectedProductType on unknown action', () => {
     const action = { type: 'unknown_action' };
-    const state = productsReducer(initialState, action);
+    const state = productsReducer(initialState as any, action);
     expect(state.items).toEqual([]);
     expect(state.selectedProductType).toBe('');
   });
 
   it('should keep previous items if fetchProducts.pending is dispatched after fulfilled', () => {
-    const fulfilledState = productsReducer(initialState, {
+    const fulfilledState = productsReducer(initialState as any, {
       type: fetchProducts.fulfilled.type,
       payload: products,
     });
